@@ -7,18 +7,19 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WinFLIF.Properties;
 
 namespace WinFLIF
 {
     public class FlifConverter
     {
-        private const string Binary = "flif.exe";
+        private readonly string binary = Path.Combine(Path.GetTempPath(), "flif.exe");
 
         public FlifConverter()
         {
-            if (!File.Exists(Binary))
+            if (!File.Exists(this.binary))
             {
-                throw new FileNotFoundException("Flif binary file couldn't be found");
+                File.WriteAllBytes(this.binary, Resources.flif);
             }
         }
 
@@ -36,7 +37,7 @@ namespace WinFLIF
             
             var flifPath = PathProvider.GetTmpPath("flif");
             
-            var convertInfo = new ProcessStartInfo(Binary, $"-E{effort} -Q{quality} \"{pngPath}\" \"{flifPath}\"")
+            var convertInfo = new ProcessStartInfo(this.binary, $"-E{effort} -Q{quality} \"{pngPath}\" \"{flifPath}\"")
             {
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
@@ -52,7 +53,7 @@ namespace WinFLIF
         {
             var pngPath = PathProvider.GetTmpPath("png");
 
-            var convertInfo = new ProcessStartInfo(Binary, $"\"{flifPath}\" \"{pngPath}\"")
+            var convertInfo = new ProcessStartInfo(this.binary, $"\"{flifPath}\" \"{pngPath}\"")
             {
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden

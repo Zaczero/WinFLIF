@@ -95,9 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="flif.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <Content Include="Resources\flif.exe" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\dropIcon.png" />
