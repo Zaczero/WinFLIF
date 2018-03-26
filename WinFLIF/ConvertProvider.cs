@@ -5,6 +5,8 @@ using System.Linq;
 using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WinFLIF.Properties;
+
 #pragma warning disable 4014
 
 namespace WinFLIF
@@ -35,9 +37,7 @@ namespace WinFLIF
 
             progress.Maximum = paths.Count * step;
             progress.Value = 0;
-
-            var flifConverter = new FlifConverter();
-
+            
             var cores = Environment.ProcessorCount;
             int[] usedCores = {0};
             int[] finished = {0};
@@ -64,7 +64,7 @@ namespace WinFLIF
 
                     Task.Run(() =>
                     {
-                        flifConverter.FlifToPng(path);
+                        FlifConverter.FlifToPng(path);
 
                         finished[0]++;
                         usedCores[0]--;
@@ -77,7 +77,7 @@ namespace WinFLIF
 
                     Task.Run(() =>
                     {
-                        flifConverter.PngToFlif(path);
+                        FlifConverter.PngToFlif(path, Settings.Default.flif_effort, Settings.Default.flif_quality, Settings.Default.flif_arguments);
 
                         finished[0]++;
                         usedCores[0]--;

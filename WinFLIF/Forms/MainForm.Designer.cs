@@ -35,6 +35,7 @@
             this.dropLabel = new System.Windows.Forms.Label();
             this.dropPicture = new System.Windows.Forms.PictureBox();
             this.aboutLink = new System.Windows.Forms.LinkLabel();
+            this.settingsLink = new System.Windows.Forms.LinkLabel();
             this.dropPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dropPicture)).BeginInit();
             this.SuspendLayout();
@@ -107,7 +108,7 @@
             this.aboutLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(239)))), ((int)(((byte)(207)))));
             this.aboutLink.AutoSize = true;
             this.aboutLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(219)))));
-            this.aboutLink.Location = new System.Drawing.Point(233, 50);
+            this.aboutLink.Location = new System.Drawing.Point(233, 34);
             this.aboutLink.Name = "aboutLink";
             this.aboutLink.Size = new System.Drawing.Size(39, 13);
             this.aboutLink.TabIndex = 3;
@@ -116,6 +117,20 @@
             this.aboutLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(219)))));
             this.aboutLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.aboutLink_LinkClicked);
             // 
+            // settingsLink
+            // 
+            this.settingsLink.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(199)))), ((int)(((byte)(239)))), ((int)(((byte)(207)))));
+            this.settingsLink.AutoSize = true;
+            this.settingsLink.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(219)))));
+            this.settingsLink.Location = new System.Drawing.Point(223, 50);
+            this.settingsLink.Name = "settingsLink";
+            this.settingsLink.Size = new System.Drawing.Size(49, 13);
+            this.settingsLink.TabIndex = 4;
+            this.settingsLink.TabStop = true;
+            this.settingsLink.Text = "Settings";
+            this.settingsLink.VisitedLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(245)))), ((int)(((byte)(219)))));
+            this.settingsLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.settingsLink_LinkClicked);
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
@@ -123,6 +138,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(55)))), ((int)(((byte)(69)))));
             this.ClientSize = new System.Drawing.Size(284, 361);
+            this.Controls.Add(this.settingsLink);
             this.Controls.Add(this.aboutLink);
             this.Controls.Add(this.dropPanel);
             this.Controls.Add(this.subtitleLabel);
@@ -157,6 +173,7 @@
         private System.Windows.Forms.Label dropLabel;
         private System.Windows.Forms.LinkLabel aboutLink;
         private System.Windows.Forms.ProgressBar convertProgress;
+        private System.Windows.Forms.LinkLabel settingsLink;
     }
 }
 

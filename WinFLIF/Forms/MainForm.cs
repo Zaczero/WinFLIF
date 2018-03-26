@@ -31,6 +31,13 @@ namespace WinFLIF.Forms
             aboutForm.Dispose();
         }
 
+        private void settingsLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var settingsForm = new SettingsForm();
+            settingsForm.ShowDialog(this);
+            settingsForm.Dispose();
+        }
+
         private void dropPanel_MouseEnter(object sender, EventArgs e)
         {
             this.dropPanel.BorderStyle = BorderStyle.Fixed3D;

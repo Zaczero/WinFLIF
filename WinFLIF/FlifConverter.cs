@@ -5,22 +5,22 @@ using WinFLIF.Properties;
 
 namespace WinFLIF
 {
-    public class FlifConverter
+    public static class FlifConverter
     {
-        private readonly string binary;
+        public static readonly string FlifBinary;
 
-        public FlifConverter()
+        static FlifConverter()
         {
             var dir = PathProvider.GetAppDataDir();
-            this.binary = Path.Combine(dir, "flif.exe");
+            FlifBinary = Path.Combine(dir, "flif.exe");
 
-            if (!File.Exists(this.binary))
+            if (!File.Exists(FlifBinary))
             {
-                File.WriteAllBytes(this.binary, Resources.flif);
+                File.WriteAllBytes(FlifBinary, Resources.flif);
             }
         }
 
-        public string PngToFlif(string pngPath, int effort = 60, int quality = 100)
+        public static string PngToFlif(string pngPath, int effort, int quality, string arguments)
         {
             if (effort < 0 || effort > 100)
             {
@@ -35,7 +35,7 @@ namespace WinFLIF
             var flifPath = PathProvider.ChangeExtension(pngPath, "flif");
             flifPath = PathProvider.GetSafePath(flifPath);
 
-            var convertInfo = new ProcessStartInfo(this.binary, $"-e -E{effort} -Q{quality} \"{pngPath}\" \"{flifPath}\"")
+            var convertInfo = new ProcessStartInfo(FlifBinary, $"-e -E{effort} -Q{quality} {arguments} \"{pngPath}\" \"{flifPath}\"")
             {
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden
@@ -47,12 +47,12 @@ namespace WinFLIF
             return flifPath;
         }
 
-        public string FlifToPng(string flifPath)
+        public static string FlifToPng(string flifPath)
         {
             var pngPath = PathProvider.ChangeExtension(flifPath, "png");
             pngPath = PathProvider.GetSafePath(pngPath);
 
-            var convertInfo = new ProcessStartInfo(this.binary, $"-d \"{flifPath}\" \"{pngPath}\"")
+            var convertInfo = new ProcessStartInfo(FlifBinary, $"-d \"{flifPath}\" \"{pngPath}\"")
             {
                 CreateNoWindow = true,
                 WindowStyle = ProcessWindowStyle.Hidden

@@ -11,7 +11,7 @@ namespace WinFLIF.Forms
             InitializeComponent();
 
             this.Icon = Resources.WinFLIF;
-            this.Text = "About WinFLIF";
+            this.Text = "About";
         }
 
         private void githubLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
