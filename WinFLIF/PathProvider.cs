@@ -1,35 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WinFLIF
 {
     public static class PathProvider
     {
-        private static readonly Random Rng = new Random();
-
-        public static string GetFileName(int length = 8)
+        public static string GetAppDataDir()
         {
-            var sb = new StringBuilder();
+            var appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var dir = Path.Combine(appdata, "WinFLIF");
 
-            for (var i = 0; i < length; i++)
+            if (!Directory.Exists(dir))
             {
-                sb.Append((char) Rng.Next(0x61, 0x7A + 1));
+                Directory.CreateDirectory(dir);
             }
 
-            return sb.ToString();
+            return dir;
         }
 
-        public static string GetTmpPath(string extension = "tmp")
+        public static string ChangeExtension(string input, string extension)
         {
-            var tmpDir = Path.GetTempPath();
-            var tmpFilename = GetFileName();
+            var dir = Path.GetDirectoryName(input);
+            var filename = Path.GetFileNameWithoutExtension(input);
 
-            return Path.Combine(tmpDir, "WinFLIF_" + tmpFilename + "." + extension);
+            return Path.Combine(dir, filename + "." + extension);
+        }
+
+        public static string GetSafePath(string input)
+        {
+            if (!File.Exists(input))
+            {
+                return input;
+            }
+
+            var index = 1;
+
+            var dir = Path.GetDirectoryName(input);
+            var filename = Path.GetFileNameWithoutExtension(input);
+            var extension = Path.GetExtension(input);
+
+            while (true)
+            {
+                var newPath = Path.Combine(dir, $"{filename} ({index++}){extension}");
+
+                if (!File.Exists(newPath))
+                {
+                    return newPath;
+                }
+            }
         }
     }
 }
