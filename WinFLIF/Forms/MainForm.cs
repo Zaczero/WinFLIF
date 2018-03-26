@@ -64,7 +64,7 @@ namespace WinFLIF.Forms
             if (result == DialogResult.OK)
             {
                 this.convertProgress.Visible = true;
-                await ConvertProvider.Convert(this.convertProgress, ofd.FileNames);
+                await ConvertProvider.Convert(this.convertProgress, ofd.FileNames.ToList());
                 this.convertProgress.Visible = false;
             }
 
@@ -97,7 +97,7 @@ namespace WinFLIF.Forms
             }
 
             this.convertProgress.Visible = true;
-            await ConvertProvider.Convert(this.convertProgress, paths);
+            await ConvertProvider.Convert(this.convertProgress, paths.ToList());
             this.convertProgress.Visible = false;
         }
 

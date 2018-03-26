@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -9,11 +11,29 @@ namespace WinFLIF
 {
     public static class ConvertProvider
     {
-        public static async Task Convert(ProgressBar progress, string[] paths)
+        public static async Task Convert(ProgressBar progress, List<string> paths)
         {
             const int step = 5;
 
-            progress.Maximum = paths.Length * step;
+            var initialSize = paths.Count;
+
+            for (var i = 0; i < initialSize; i++)
+            {
+                if (IsDirectory(paths[i]))
+                {
+                    paths.AddRange(DirSearch(paths[i]));
+                }
+            }
+
+            for (var i = 0; i < paths.Count; i++)
+            {
+                if (!IsFlif(paths[i]) && !IsPng(paths[i]))
+                {
+                    paths.RemoveAt(i--);
+                }
+            }
+
+            progress.Maximum = paths.Count * step;
             progress.Value = 0;
 
             var flifConverter = new FlifConverter();
@@ -94,6 +114,26 @@ namespace WinFLIF
         {
             var extension = Path.GetExtension(filename);
             return extension == ".png";
+        }
+
+        private static bool IsDirectory(string path)
+        {
+            var attributes = File.GetAttributes(path);
+            return attributes.HasFlag(FileAttributes.Directory);
+        }
+
+        private static List<string> DirSearch(string dir)
+        {
+            var di = new DirectoryInfo(dir);
+
+            var result = di.GetFiles().Select(file => file.FullName).ToList();
+
+            foreach (var directory in di.GetDirectories())
+            {
+                result.AddRange(DirSearch(directory.FullName));
+            }
+
+            return result;
         }
     }
 }
