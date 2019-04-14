@@ -7,8 +7,8 @@ namespace WinFLIF
     {
         public static string GetAppDataDir()
         {
-            var appdata = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            var dir = Path.Combine(appdata, "WinFLIF");
+            var appDataDir = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            var dir = Path.Combine(appDataDir, "WinFLIF");
 
             if (!Directory.Exists(dir))
             {
