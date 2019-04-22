@@ -1,7 +1,7 @@
 # WinFLIF
 
-[![GitHub issues](https://img.shields.io/github/release/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/issues)
-[![GitHub license](https://img.shields.io/github/license/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/blob/master/LICENSE)
+![](https://img.shields.io/github/release/Zaczero/WinFLIF.svg)
+![](https://img.shields.io/github/license/Zaczero/WinFLIF.svg)
 
 WinFLIF is a simple FLIF image converter tool for Windows.  
 You can easily select and convert files without using command prompt.
