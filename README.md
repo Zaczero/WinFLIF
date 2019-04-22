@@ -1,13 +1,16 @@
 # WinFLIF
 
-[![GitHub issues](https://img.shields.io/github/issues/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/issues) [![GitHub stars](https://img.shields.io/github/stars/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/stargazers) [![GitHub license](https://img.shields.io/github/license/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/blob/master/LICENSE)
+[![GitHub issues](https://img.shields.io/github/release/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/issues)
+[![GitHub license](https://img.shields.io/github/license/Zaczero/WinFLIF.svg)](https://github.com/Zaczero/WinFLIF/blob/master/LICENSE)
 
 WinFLIF is a simple FLIF image converter tool for Windows.  
 You can easily select and convert files without using command prompt.
 
+![](https://i.imgur.com/ZJpTwoL.png)
+
 ## Download
 
-* <https://github.com/Zaczero/WinFLIF/releases>
+* https://github.com/Zaczero/WinFLIF/releases/latest
 
 ## What is FLIF
 
